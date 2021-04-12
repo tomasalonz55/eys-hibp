@@ -55,25 +55,33 @@ const Home = ({ setAppState, appState }) => {
 				</form>
 			</Formdiv>
 
-			{!appState.loading && (
-				<div>
-					<BreachList>
-						<h2>
-							Tu cuenta ha sido vulnerada en {appState.breaches.data.length}{" "}
-							sitios!
-						</h2>
-						<Breachs>
-							{appState.breaches.data.map((breach) => (
-								<Breach
-									key={breach.Name}
-									breachName={breach.Name}
-									breachLogo={breach.LogoPath}
-									breachDescription={breach.Description}
-								></Breach>
-							))}
-						</Breachs>
-					</BreachList>
-				</div>
+			{!appState.loading && appState.breaches.data.Mensaje ? (
+				<h2>Tu cuenta no ha sido vulnerada!</h2>
+			) : (
+				!appState.loading && (
+					<div>
+						<BreachList>
+							<h2>
+								Tu cuenta ha sido vulnerada en{" "}
+								{appState.breaches.data.length === 1 ? (
+									<span>{appState.breaches.data.length} sitio!</span>
+								) : (
+									<span>{appState.breaches.data.length} sitios!</span>
+								)}
+							</h2>
+							<Breachs>
+								{appState.breaches.data.map((breach) => (
+									<Breach
+										key={breach.Name}
+										breachName={breach.Name}
+										breachLogo={breach.LogoPath}
+										breachDescription={breach.Description}
+									></Breach>
+								))}
+							</Breachs>
+						</BreachList>
+					</div>
+				)
 			)}
 		</Card>
 	);
