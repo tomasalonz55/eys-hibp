@@ -41,25 +41,24 @@ const Passwords = ({ setPassword, password }) => {
 	return (
 		<Card>
 			<H1>Verifica si tu contraseña ha sido comprometida</H1>
-			<Formdiv>
-				<form action="" onSubmit={handleSubmit}>
-					<div>
-						<Inputblack
-							onChange={(e) => {
-								setPassword(e.target.value);
-							}}
-							placeholder={"Contraseña"}
-							type="password"
-						/>
-					</div>
-					<Button type="submit">Verificar</Button>
-					{response && response === "La contraseña no ha sido filtrada 👌🏼" ? (
-						<H1succes>{response}</H1succes>
-					) : (
-						response && <H1alert>{response}</H1alert>
-					)}
-				</form>
-			</Formdiv>
+
+			<form action="" onSubmit={handleSubmit}>
+				<div>
+					<Inputblack
+						onChange={(e) => {
+							setPassword(e.target.value);
+						}}
+						placeholder={"Contraseña"}
+						type="password"
+					/>
+				</div>
+				<Button type="submit">Verificar</Button>
+				{response && response === "La contraseña no ha sido filtrada 👌🏼" ? (
+					<H1succes>{response}</H1succes>
+				) : (
+					response && <H1alert>{response}</H1alert>
+				)}
+			</form>
 		</Card>
 	);
 };
@@ -120,10 +119,6 @@ const H1alert = styled(H1)`
 	border: 4px solid #7e0000;
 	color: #7e0000;
 	border-color: #7e0000;
-`;
-
-const Formdiv = styled.div`
-	background-color: #e7e7e7;
 `;
 
 const Button = styled.button`

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Passwords from "./pages/Passwords";
+import Breaches from "./pages/Breaches";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import GlobalStyles from "./components/GlobalStyles";
@@ -40,6 +41,7 @@ function App() {
 						/>
 					)}
 				/>
+				<Route exact path="/breaches" render={() => <Breaches />} />
 				<Footer />
 			</Router>
 		</div>

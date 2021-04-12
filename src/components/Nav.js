@@ -17,12 +17,9 @@ const Nav = ({ existingTokens }) => {
 				<li>
 					<Link to="/passwords">Contraseñas</Link>
 				</li>
-				{/* <li>
-					<Link to="/">Pastes</Link>
-				</li>
 				<li>
-					<Link to="/">Breachs</Link>
-				</li> */}
+					<Link to="/breaches">Breaches</Link>
+				</li>
 			</ul>
 		</StyledNav>
 	);

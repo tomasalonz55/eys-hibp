@@ -109,6 +109,10 @@ const H1 = styled.h1`
 	margin: 0% 20%;
 	font-size: 2.5rem;
 	border-color: black;
+	@media (max-width: 600px) {
+		font-size: 1.5rem;
+		margin: 0% 10%;
+	}
 `;
 
 const H3 = styled.h3`
