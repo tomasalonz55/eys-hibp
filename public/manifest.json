@@ -1,6 +1,6 @@
 {
-	"short_name": "React App",
-	"name": "Create React App Sample",
+	"short_name": "Estrategia y Seguridad",
+	"name": "Web para verificar si correos o contraseñas han sido hackeadas",
 	"icons": [
 		{
 			"src": "favicon.ico",
