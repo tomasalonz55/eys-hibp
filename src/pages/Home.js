@@ -125,6 +125,9 @@ const Input = styled.input`
 	margin: 2.5rem 0rem;
 	font-size: 1.5rem;
 	border-color: black;
+	@media (max-width: 600px) {
+		font-size: 1rem;
+	}
 `;
 
 const Button = styled.button`
@@ -157,7 +160,7 @@ const BreachList = styled.div`
 `;
 
 const Breachs = styled.div`
-	max-height: 35vh;
+	/* max-height: 35vh; */
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 	grid-column-gap: 1.5rem;

@@ -41,24 +41,25 @@ const Passwords = ({ setPassword, password }) => {
 	return (
 		<Card>
 			<H1>Verifica si tu contraseña ha sido comprometida</H1>
-
-			<form action="" onSubmit={handleSubmit}>
-				<div>
-					<Inputblack
-						onChange={(e) => {
-							setPassword(e.target.value);
-						}}
-						placeholder={"Contraseña"}
-						type="password"
-					/>
-				</div>
-				<Button type="submit">Verificar</Button>
-				{response && response === "La contraseña no ha sido filtrada 👌🏼" ? (
-					<H1succes>{response}</H1succes>
-				) : (
-					response && <H1alert>{response}</H1alert>
-				)}
-			</form>
+			<Formdiv>
+				<form action="" onSubmit={handleSubmit}>
+					<div>
+						<Inputblack
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+							placeholder={"Contraseña"}
+							type="password"
+						/>
+					</div>
+					<Button type="submit">Verificar</Button>
+					{response && response === "La contraseña no ha sido filtrada 👌🏼" ? (
+						<H1succes>{response}</H1succes>
+					) : (
+						response && <H1alert>{response}</H1alert>
+					)}
+				</form>
+			</Formdiv>
 		</Card>
 	);
 };
@@ -77,11 +78,18 @@ const Card = styled.div`
 `;
 
 const H1 = styled.h1`
+	border: 4px solid black;
 	border-radius: 20px;
 	background-color: rgba(255, 255, 255, 0);
+	color: black;
 	padding: 20px 20px;
 	margin: 0% 20%;
 	font-size: 2.5rem;
+	border-color: black;
+	@media (max-width: 600px) {
+		font-size: 1.5rem;
+		margin: 0% 10%;
+	}
 `;
 
 const Input = styled.input`
@@ -91,6 +99,9 @@ const Input = styled.input`
 	width: 80%;
 	margin: 2.5rem 0rem;
 	font-size: 1.5rem;
+	@media (max-width: 600px) {
+		font-size: 1rem;
+	}
 `;
 
 const Inputblack = styled(Input)`
@@ -109,6 +120,10 @@ const H1alert = styled(H1)`
 	border: 4px solid #7e0000;
 	color: #7e0000;
 	border-color: #7e0000;
+`;
+
+const Formdiv = styled.div`
+	background-color: #e7e7e7;
 `;
 
 const Button = styled.button`
