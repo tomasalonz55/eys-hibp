@@ -41,7 +41,10 @@ const Passwords = ({ setPassword, password }) => {
 	return (
 		<Card>
 			<H1>Verifica si tu contraseña ha sido comprometida</H1>
-
+			<H3>
+				Tus datos son encriptados antes de ser enviados a nuestros servidores,
+				no guardamos ninguna contraseña.
+			</H3>
 			<form action="" onSubmit={handleSubmit}>
 				<div>
 					<Inputblack
@@ -89,6 +92,10 @@ const H1 = styled.h1`
 		font-size: 1.5rem;
 		margin: 0% 10%;
 	}
+`;
+const H3 = styled.h3`
+	margin: 1rem 2rem;
+	color: #800000;
 `;
 
 const Input = styled.input`

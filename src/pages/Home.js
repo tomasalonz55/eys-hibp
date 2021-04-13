@@ -1,12 +1,19 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import Breach from "../components/Breach";
 import ReactLoading from "react-loading";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/material.css";
+import es from "react-phone-input-2/lang/es.json";
+import Switch from "react-switch";
 
 const Home = ({ setAppState, appState }) => {
+	const myRef = useRef(null);
+
 	const [account, setAccount] = useState(false);
 	const [load, setLoad] = useState(true);
+	const [checked, setCheked] = useState(false);
 
 	const getBreaches = async () => {
 		const breaches = await axios.get(
@@ -15,6 +22,7 @@ const Home = ({ setAppState, appState }) => {
 
 		setAppState({ loading: false, breaches: breaches });
 		setLoad(true);
+		executeScroll();
 	};
 
 	const handleSubmit = (e) => {
@@ -22,22 +30,87 @@ const Home = ({ setAppState, appState }) => {
 		setLoad(false);
 		getBreaches();
 	};
+	const handleChange = () => {
+		setCheked(!checked);
+	};
 
+	const executeScroll = () => myRef.current.scrollIntoView();
+
+	const PhoneInputStyle = {
+		border: "4px solid black",
+		borderRadius: "20px",
+		backgroundColor: "rgba(255, 255, 255, 0)",
+		// color: black;
+		// padding: "20px 20px",
+		width: "80%",
+		fontSize: "1.5rem",
+		// border-color: black;
+	};
+	const ContainerPhone = {
+		margin: "2.5rem 0rem",
+		display: "flex",
+		justifyContent: "center",
+	};
+	const ButtonPhone = {
+		position: "relative",
+		left: "-290px",
+	};
 	return (
 		<Card>
 			<H1>¿He sido hackeado?</H1>
 			<H3>Comprueba si tus datos han sido comprometidos</H3>
-			<Formdiv>
+			<Loader>
+				<H3S onClick={() => setCheked(false)}>Correo</H3S>
+				<Switch
+					checked={checked}
+					onChange={handleChange}
+					offColor="#8f8f8f"
+					offHandleColor="#1b1b1b"
+					onColor="#8f8f8f"
+					onHandleColor="#1b1b1b"
+					handleDiameter={30}
+					uncheckedIcon={false}
+					checkedIcon={false}
+					boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+					activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+					height={20}
+					width={48}
+					className="react-switch"
+					id="material-switch"
+				/>
+				<H3S onClick={() => setCheked(true)}>Teléfono</H3S>
+			</Loader>
+			<Formdiv ref={myRef}>
 				<form action="" onSubmit={handleSubmit}>
 					<div>
-						<Input
-							onChange={(e) => {
-								setAccount(e.target.value);
-							}}
-							type="text"
-							placeholder="Correo o
-                    número de teléfono (Formato internacional)"
-						/>
+						{checked ? (
+							<PhoneInput
+								country={"gt"}
+								localization={es}
+								inputStyle={PhoneInputStyle}
+								containerStyle={ContainerPhone}
+								buttonStyle={ButtonPhone}
+								specialLabel={""}
+								placeholder={"Ingresa tu número"}
+								inputProps={{
+									required: true,
+									autoFocus: true,
+								}}
+								onChange={(e) => {
+									setAccount(e);
+								}}
+							/>
+						) : (
+							<Input
+								onChange={(e) => {
+									setAccount(e.target.value);
+								}}
+								type="text"
+								required
+								placeholder="Correo o
+                    Nombre de la cuenta"
+							/>
+						)}
 					</div>
 
 					{!load ? (
@@ -54,7 +127,6 @@ const Home = ({ setAppState, appState }) => {
 					)}
 				</form>
 			</Formdiv>
-
 			{!appState.loading && appState.breaches.data.Mensaje ? (
 				<h2>Tu cuenta no ha sido vulnerada!</h2>
 			) : (
@@ -118,6 +190,10 @@ const H1 = styled.h1`
 const H3 = styled.h3`
 	margin: 1rem 0rem;
 `;
+const H3S = styled(H3)`
+	margin: 1rem 1rem;
+	cursor: pointer;
+`;
 
 const Input = styled.input`
 	border: 4px solid black;
@@ -178,12 +254,13 @@ const Breachs = styled.div`
 `;
 
 const Formdiv = styled.div`
-	background-color: #e7e7e7;
+	/* background-color: #e7e7e7; */
 `;
 
 const Loader = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 `;
 
 export default Home;
