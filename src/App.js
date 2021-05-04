@@ -12,6 +12,7 @@ import { createBrowserHistory } from "history";
 
 const trackingId = "G-5LR70VDTFC"; // Replace with your Google Analytics tracking ID
 ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const history = createBrowserHistory();
 // Initialize google analytics page view tracking
