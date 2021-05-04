@@ -7,15 +7,12 @@ import Breaches from "./pages/Breaches";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import GlobalStyles from "./components/GlobalStyles";
-import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
-
-function App(ga4react) {
+function App() {
 	// Initialize google analytics page view tracking
-	history.listen((location) => {
-		ga4react.pageview(location.pathname); // Record a pageview for the given page
-	});
+
+	//ga4react.pageview(location.pathname); // Record a pageview for the given page
+
 	const [appState, setAppState] = useState({
 		loading: true,
 		breaches: null,
@@ -28,7 +25,7 @@ function App(ga4react) {
 	return (
 		<div className="App">
 			<GlobalStyles />
-			<Router history={history}>
+			<Router>
 				<Nav />
 				<Route
 					exact
