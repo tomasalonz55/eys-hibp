@@ -7,19 +7,6 @@ import Breaches from "./pages/Breaches";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import GlobalStyles from "./components/GlobalStyles";
-import ReactGA from "react-ga";
-import { createBrowserHistory } from "history";
-
-const trackingId = "G-5LR70VDTFC"; // Replace with your Google Analytics tracking ID
-ReactGA.initialize(trackingId);
-ReactGA.pageview(window.location.pathname + window.location.search);
-
-const history = createBrowserHistory();
-// Initialize google analytics page view tracking
-history.listen((location) => {
-	ReactGA.set({ page: location.pathname }); // Update the user's current page
-	ReactGA.pageview(location.pathname); // Record a pageview for the given page
-});
 
 function App() {
 	const [appState, setAppState] = useState({
@@ -34,7 +21,7 @@ function App() {
 	return (
 		<div className="App">
 			<GlobalStyles />
-			<Router history={history}>
+			<Router>
 				<Nav />
 				<Route
 					exact
