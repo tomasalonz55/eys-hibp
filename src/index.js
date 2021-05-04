@@ -11,7 +11,7 @@ const ga4react = new GA4React("G-5LR70VDTFC");
 
 	ReactDOM.render(
 		<React.StrictMode>
-			<App />
+			<App ga4react={ga4react} />
 		</React.StrictMode>,
 		document.getElementById("root")
 	);
