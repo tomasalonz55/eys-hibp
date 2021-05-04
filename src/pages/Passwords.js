@@ -10,7 +10,6 @@ const Passwords = ({ setPassword, password }) => {
 		let sha = sha1(password).toUpperCase();
 		var prefix = sha.substring(0, 5);
 		var suffix = sha.substring(5, sha.length);
-		console.log(sha);
 		const passwordData = await axios.get(
 			`https://api.pwnedpasswords.com/range/${prefix}`
 		);
