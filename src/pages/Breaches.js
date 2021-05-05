@@ -18,6 +18,7 @@ const Breaches = () => {
 	};
 	useEffect(() => {
 		getBreaches();
+		document.title = "Breaches - Estrategia y Seguridad";
 	}, []);
 	return (
 		<Card>

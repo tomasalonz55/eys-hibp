@@ -1,9 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import sha1 from "sha1";
 import styled from "styled-components";
 
 const Passwords = ({ setPassword, password }) => {
+	useEffect(() => {
+		document.title = "Passwords - Estrategia y Seguridad";
+	}, []);
 	const [response, setResponse] = useState(null);
 
 	const getBreaches = async () => {
@@ -15,7 +18,10 @@ const Passwords = ({ setPassword, password }) => {
 		);
 		let hashes = passwordData.data.split("\n");
 		let breached = false;
-
+		window.gtag("event", "Password searched", {
+			event_category: "Clicks",
+			event_label: "Password Page",
+		});
 		for (let i = 0; i < hashes.length; i++) {
 			let hash = hashes[i];
 			let h = hash.split(":");

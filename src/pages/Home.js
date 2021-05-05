@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Breach from "../components/Breach";
 import ReactLoading from "react-loading";
@@ -9,6 +9,9 @@ import es from "react-phone-input-2/lang/es.json";
 import Switch from "react-switch";
 
 const Home = ({ setAppState, appState }) => {
+	useEffect(() => {
+		document.title = "Home - Estrategia y Seguridad";
+	}, []);
 	const myRef = useRef(null);
 
 	const [account, setAccount] = useState(false);
@@ -23,6 +26,15 @@ const Home = ({ setAppState, appState }) => {
 		setAppState({ loading: false, breaches: breaches });
 		setLoad(true);
 		executeScroll();
+		checked
+			? window.gtag("event", "Phone number searched", {
+					event_category: "Clicks",
+					event_label: "Home Page",
+			  })
+			: window.gtag("event", "Email searched", {
+					event_category: "Clicks",
+					event_label: "Home Page",
+			  });
 	};
 
 	const handleSubmit = (e) => {
